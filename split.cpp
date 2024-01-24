@@ -18,6 +18,27 @@ void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
 // WRITE YOUR CODE HERE
+  //check if reached the end of in
+  if (in == nullptr){
+    //set the next node to nullptr to end list
+    odds = nullptr; 
+    evens = nullptr;
+    return;
+  }
+
+  //check for odd or even
+  if (in->value % 2 == 1){
+    odds = in; //set odd head to in head
+    Node* tmp = in->next;
+    in = nullptr;
+    split(tmp, odds->next, evens); //recursive call with next nodes
+  } else {
+    evens = in; //set even head to in head
+    Node* tmp = in->next;
+    in = nullptr;
+    split(tmp, odds, evens->next); //recursive call with next nodes
+  }
+
 }
 
 /* If you needed a helper function, write it here */
